@@ -28,14 +28,13 @@ android {
 buildscript {
     ext.kotlin_version = '1.0.0-beta-4584'
     repositories {
-        jcenter()
         mavenCentral()
         maven {
             url "http://oss.sonatype.org/content/repositories/snapshots"
         }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:0.1-SNAPSHOT"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
         classpath 'com.android.tools.build:gradle:1.1.0'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
@@ -43,9 +42,7 @@ buildscript {
 }
 
 repositories {
-    maven {
-        url "http://repository.jetbrains.com/all"
-    }
+    mavenCentral()
 }
 
 dependencies {

@@ -38,8 +38,7 @@ class KillerTask<T>{
         }
     }
 
-    val isCancelled: Boolean
-        get() = genericTask!!.isCancelled
+    val isCancelled: Boolean = genericTask!!.isCancelled
 
     companion object {
 
@@ -53,6 +52,8 @@ class KillerTask<T>{
             }
             return instance
         }
+
+
     }
 }
 

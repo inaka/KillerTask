@@ -20,7 +20,6 @@ class GenericTask<T>(killerTask: KillerTask<T>) : AsyncTask<Void, Void, T>() {
             exception = e
             return null
         }
-
     }
 
     override fun onPostExecute(result: T) {
@@ -36,4 +35,5 @@ class GenericTask<T>(killerTask: KillerTask<T>) : AsyncTask<Void, Void, T>() {
         }
 
     }
+
 }
