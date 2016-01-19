@@ -16,6 +16,11 @@ class KillerTask<T>{
         this.callback = callback
     }
 
+    private constructor(something: Something<T>, callback: DoThis<T>) {
+        this.something = something
+        this.callback = callback
+    }
+
     fun whenDone(callback: DoThis<Any>): KillerTask<Any>? {
         if (instance == null) {
             instance = KillerTask(callback)
@@ -53,7 +58,15 @@ class KillerTask<T>{
             return instance
         }
 
-
+        fun perform(something: Something<Any>, callback: DoThis<Any>): KillerTask<Any>?{
+            if (instance == null) {
+                instance = KillerTask(something, callback)
+            } else {
+                instance!!.something = something
+                instance!!.callback = callback
+            }
+            return instance
+        }
     }
 }
 

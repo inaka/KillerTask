@@ -26,12 +26,12 @@ class GenericTask<T>(killerTask: KillerTask<T>) : AsyncTask<Void, Void, T>() {
 
         if (!isCancelled) {
             if (exception != null) {
-                callback.ifNotOK(exception as Exception)
+                callback.ifNotOk(exception as Exception)
             } else {
-                callback.ifOK(result)
+                callback.ifOk(result)
             }
         } else {
-            callback.ifNotOK(RuntimeException("task was cancelled"))
+            callback.ifNotOk(RuntimeException("task was cancelled"))
         }
 
     }
