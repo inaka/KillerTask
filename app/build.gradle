@@ -7,7 +7,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        minSdkVersion 17
+        minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -18,6 +18,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
@@ -48,12 +49,9 @@ repositories {
 }
 
 dependencies {
-//    compile fileTree(dir: 'libs', include: ['*.jar'])
-
     // Kotlin
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     // JUnit
     testCompile 'junit:junit:4.12'
-
 }
