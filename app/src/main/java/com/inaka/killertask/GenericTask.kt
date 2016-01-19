@@ -4,18 +4,18 @@ import android.os.AsyncTask
 
 class GenericTask<T>(killerTask: KillerTask<T>) : AsyncTask<Void, Void, T>() {
 
-    private val something: Something<T>
+    private val action: Action<T>
     private val callback: DoThis<T>
     private var exception: Exception? = null
 
     init {
-        something = killerTask.something as Something<T>
+        action = killerTask.action as Action<T>
         callback = killerTask.callback as DoThis<T>
     }
 
     override fun doInBackground(vararg params: Void): T? {
         try {
-            return something.whichDoes()
+            return action.behaviour
         } catch (e: Exception) {
             exception = e
             return null

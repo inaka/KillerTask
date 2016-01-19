@@ -4,20 +4,20 @@ class KillerTask<T>{
 
     private var genericTask: GenericTask<T>? = null
 
-    var something: Something<T>? = null
+    var action: Action<T>? = null
 
     var callback: DoThis<T>? = null
 
-    private constructor(something: Something<T>) {
-        this.something = something
+    private constructor(action: Action<T>) {
+        this.action = action
     }
 
     private constructor(callback: DoThis<T>) {
         this.callback = callback
     }
 
-    private constructor(something: Something<T>, callback: DoThis<T>) {
-        this.something = something
+    private constructor(action: Action<T>, callback: DoThis<T>) {
+        this.action = action
         this.callback = callback
     }
 
@@ -33,6 +33,8 @@ class KillerTask<T>{
     fun go() {
         if (genericTask == null) {
             genericTask = GenericTask(this)
+
+
             genericTask!!.execute()
         }
     }
@@ -43,26 +45,26 @@ class KillerTask<T>{
         }
     }
 
-    val isCancelled: Boolean = genericTask!!.isCancelled
+    val isCancelled: Boolean? = genericTask?.isCancelled
 
     companion object {
 
         private var instance: KillerTask<Any>? = null
 
-        fun perform(something: Something<Any>): KillerTask<Any>? {
+        fun perform(action: Action<Any>): KillerTask<Any>? {
             if (instance == null) {
-                instance = KillerTask(something)
+                instance = KillerTask(action)
             } else {
-                instance!!.something = something
+                instance!!.action = action
             }
             return instance
         }
 
-        fun perform(something: Something<Any>, callback: DoThis<Any>): KillerTask<Any>?{
+        fun perform(action: Action<Any>, callback: DoThis<Any>): KillerTask<Any>?{
             if (instance == null) {
-                instance = KillerTask(something, callback)
+                instance = KillerTask(action, callback)
             } else {
-                instance!!.something = something
+                instance!!.action = action
                 instance!!.callback = callback
             }
             return instance
