@@ -6,22 +6,8 @@ import java.util.concurrent.CountDownLatch
 /**
  * Created by inaka on 1/20/16.
  */
-class Example {
+private class Example {
     val signal = CountDownLatch(1);
-
-    fun get() {
-        KillerTask(
-                doWork(),
-                WhenDone(mapOf(
-                        WhenDone.success to onSuccess,
-                        WhenDone.failed to onFailed
-                ))).go()
-        signal.await()
-    }
-
-    fun doWork(): String {
-        return "test"
-    }
 
     val onSuccess: (String) -> Unit = {
         result: String ->
@@ -35,4 +21,19 @@ class Example {
         e.printStackTrace()
         signal.countDown()
     }
+
+    init {
+        KillerTask(
+                doWork(),
+                WhenDone(mapOf(
+                        WhenDone.success to onSuccess,
+                        WhenDone.failed to onFailed
+                ))).go()
+        signal.await()
+    }
+
+    fun doWork(): String {
+        return "test"
+    }
+
 }
