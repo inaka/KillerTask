@@ -1,26 +1,31 @@
 package com.inaka.killertask
 
-
+import com.inaka.killertask.WhenDone.onFailure
+import com.inaka.killertask.WhenDone.onSuccess
 import org.junit.Test
-import com.inaka.killertask.DoThis
+
 /**
  * Created by inaka on 1/19/16.
  */
 class MainTest {
     @Test
-    @Throws(Exception::class)
     fun createKillerTask() {
 
         KillerTask.perform(
-                Action(doWork()),
-                DoThis(mapOf(
-                DoThis.ok to { result: String -> assert(result == "test")},
-                DoThis.notOk to { e: Exception -> e.printStackTrace() }
-        )))?.go()
+                doWork(),
+                WhenDone(mapOf(
+                        onSuccess.begin() to {
+                            result: String ->
+                            assert(result.equals("test"))
+                        },
+                        onFailure.begin() to {
+                            e: Exception ->
+                            print(e.message)
+                        }
+                ))).go()
     }
 
-    fun doWork(): String{
-        val isCancelled = false
+    fun doWork(): String {
         return "test"
     }
 }
