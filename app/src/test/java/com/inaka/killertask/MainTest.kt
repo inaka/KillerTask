@@ -1,7 +1,6 @@
 package com.inaka.killertask
 
-import com.inaka.killertask.WhenDone.onFailure
-import com.inaka.killertask.WhenDone.onSuccess
+import android.util.Log
 import org.junit.Test
 
 /**
@@ -11,21 +10,27 @@ class MainTest {
     @Test
     fun createKillerTask() {
 
-        KillerTask.perform(
+        KillerTask(
                 doWork(),
                 WhenDone(mapOf(
-                        onSuccess.begin() to {
-                            result: String ->
-                            assert(result.equals("test"))
-                        },
-                        onFailure.begin() to {
-                            e: Exception ->
-                            print(e.message)
-                        }
+                        WhenDone.success to onSuccess,
+                        WhenDone.failed to onFailed
                 ))).go()
     }
 
     fun doWork(): String {
         return "test"
+    }
+
+    val onSuccess: (String) -> Unit = {
+        result: String ->
+        Log.wtf("resultado", result)
+        assert(result.equals("test"))
+    }
+
+    val onFailed: (Exception) -> Unit = {
+        e: Exception ->
+        Log.wtf("resultado", e.toString())
+        print(e.message)
     }
 }

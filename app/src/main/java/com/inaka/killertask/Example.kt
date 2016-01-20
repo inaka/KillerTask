@@ -1,39 +1,38 @@
 package com.inaka.killertask
 
+import android.util.Log
 import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by inaka on 1/20/16.
  */
 class Example {
+    val signal = CountDownLatch(1);
 
-    fun get(){
-        var signal = CountDownLatch(1);
-
-        KillerTask.perform(
-                {doWork()},
+    fun get() {
+        KillerTask(
+                doWork(),
                 WhenDone(mapOf(
-                        WhenDone.onSuccess.begin() to {
-                            result: String ->
-                            {
-                                signal.countDown()
-                                assert(result == "test")
-                            }
-                        },
-                        WhenDone.onFailure.begin() to {
-                            e: Exception ->
-                            {
-                                signal.countDown()
-                                print(e.message)
-                            }
-                        }
+                        WhenDone.success to onSuccess,
+                        WhenDone.failed to onFailed
                 ))).go()
-
-        signal.await();
+        signal.await()
     }
 
     fun doWork(): String {
         return "test"
+    }
+
+    val onSuccess: (String) -> Unit = {
+        result: String ->
+        Log.wtf("resultado", result)
+        signal.countDown()
+    }
+
+    val onFailed: (Exception) -> Unit = {
+        e: Exception ->
+        Log.wtf("resultado", e.toString())
+        e.printStackTrace()
+        signal.countDown()
     }
 }

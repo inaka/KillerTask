@@ -1,19 +1,13 @@
 package com.inaka.killertask
 
 class WhenDone<T>(val map: Map<String, Any?>) {
-    val success: (T) -> Unit by map
-    val failure: (Exception) -> Unit by map
 
-    object onSuccess : MyString() {
-        override fun begin(): String {
-            return "success"
-        }
-    }
+    val success: (T) -> T by map
+    val failure: (Exception?) -> T by map
 
-    object onFailure : MyString() {
-        override fun begin(): String {
-            return "failure"
-        }
+    companion object {
+        public val success = "success"
+        public val failed = "failure"
     }
 
 }
