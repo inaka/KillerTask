@@ -11,13 +11,13 @@ private class Example {
 
     val onSuccess: (String) -> Unit = {
         result: String ->
-        Log.wtf("result", result)
+        Log.wtf("resultado", result)
         signal.countDown()
     }
 
     val onFailed: (Exception) -> Unit = {
         e: Exception ->
-        Log.wtf("result", e.toString())
+        Log.wtf("resultado", e.toString())
         e.printStackTrace()
         signal.countDown()
     }
