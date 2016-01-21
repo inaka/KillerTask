@@ -9,13 +9,7 @@ import org.junit.Test
 class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
-
-        KillerTask(
-                doWork(),
-                WhenDone(mapOf(
-                        WhenDone.success to onSuccess,
-                        WhenDone.failed to onFailed
-                ))).go()
+        KillerTask(doWork(), WhenDone(onSuccess, onFailed)).go()
     }
 
     fun doWork(): String {
@@ -27,9 +21,9 @@ class KillerMainTest_KotlinVersion {
         assert(result.equals("test"))
     }
 
-    val onFailed: (Exception) -> Unit = {
-        e: Exception ->
-        e.printStackTrace()
+    val onFailed: (Exception?) -> Unit = {
+        e: Exception? ->
+        e?.printStackTrace()
     }
 
 }

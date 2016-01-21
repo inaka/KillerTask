@@ -15,20 +15,15 @@ private class Example {
         signal.countDown()
     }
 
-    val onFailed: (Exception) -> Unit = {
-        e: Exception ->
+    val onFailed: (Exception?) -> Unit = {
+        e: Exception? ->
         Log.wtf("result", e.toString())
-        e.printStackTrace()
+        e?.printStackTrace()
         signal.countDown()
     }
 
     init {
-        KillerTask(
-                doWork(),
-                WhenDone(mapOf(
-                        WhenDone.success to onSuccess,
-                        WhenDone.failed to onFailed
-                ))).go()
+        KillerTask(doWork(), WhenDone(onSuccess, onFailed)).go()
         signal.await()
     }
 

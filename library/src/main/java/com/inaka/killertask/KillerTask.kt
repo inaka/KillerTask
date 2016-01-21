@@ -3,7 +3,7 @@ package com.inaka.killertask
 import android.os.AsyncTask
 import android.util.Log
 
-class KillerTask<T>(val action: T, val callback: WhenDone<Any>) : AsyncTask<Void, Void, T>() {
+class KillerTask<T>(val action: T, val callback: WhenDone<T>) : AsyncTask<Void, Void, T>() {
 
     private var exception: Exception? = null
 
@@ -30,7 +30,7 @@ class KillerTask<T>(val action: T, val callback: WhenDone<Any>) : AsyncTask<Void
                 run { callback.failure(exception) }
             } else {
                 Log.wtf(TAG, "Success")
-                run { callback.success(result as Any) }
+                run { callback.success(result) }
             }
         } else {
             Log.wtf(TAG, "Failure with RuntimeException caused by task cancelled")
