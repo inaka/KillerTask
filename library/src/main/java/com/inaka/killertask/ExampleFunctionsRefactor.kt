@@ -4,9 +4,9 @@ import android.util.Log
 import java.util.concurrent.CountDownLatch
 
 /**
- * Created by inaka on 1/20/16.
+ * Created by inaka on 1/21/16.
  */
-private class Example {
+private class ExampleFunctionsRefactor {
     val signal = CountDownLatch(1);
 
     val onSuccess: (String) -> Unit = {
@@ -15,25 +15,19 @@ private class Example {
         signal.countDown()
     }
 
-    val onFailed: (Exception) -> Unit = {
-        e: Exception ->
+    val onFailed: (Exception?) -> Unit = {
+        e: Exception? ->
         Log.wtf("result", e.toString())
-        e.printStackTrace()
+        e?.printStackTrace()
         signal.countDown()
     }
 
     init {
-        KillerTask(
-                doWork(),
-                WhenDone(mapOf(
-                        WhenDone.success to onSuccess,
-                        WhenDone.failed to onFailed
-                ))).go()
+        KillerTask(doWork(), onSuccess, onFailed).go()
         signal.await()
     }
 
     fun doWork(): String {
         return "test"
     }
-
 }
