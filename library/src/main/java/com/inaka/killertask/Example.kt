@@ -23,7 +23,7 @@ private class Example {
     }
 
     init {
-        KillerTask(doWork(), WhenDone(onSuccess, onFailed)).go()
+        KillerTask(doWork(), onSuccess, onFailed).go()
         signal.await()
     }
 

@@ -9,7 +9,7 @@ import org.junit.Test
 class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
-        KillerTask(doWork(), WhenDone(onSuccess, onFailed)).go()
+        KillerTask(doWork(), onSuccess, onFailed).go()
     }
 
     fun doWork(): String {
