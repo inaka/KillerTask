@@ -4,9 +4,9 @@ import android.util.Log
 import java.util.concurrent.CountDownLatch
 
 /**
- * Created by inaka on 1/20/16.
+ * Created by inaka on 1/21/16.
  */
-private class Example {
+private class ExampleFunctionsRefactor {
     val signal = CountDownLatch(1);
 
     val onSuccess: (String) -> Unit = {
@@ -30,5 +30,4 @@ private class Example {
     fun doWork(): String {
         return "test"
     }
-
 }

@@ -1,6 +1,5 @@
 package com.inaka.killertask
 
-import android.util.Log
 import org.junit.Test
 
 /**
@@ -10,6 +9,19 @@ class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
         KillerTask(doWork(), onSuccess, onFailed).go()
+
+        /*
+            That is the same as:
+
+               KillerTask("test", {
+                    result: String ->
+                    assert(result.equals("test"))
+                }, {
+                    e: Exception? ->
+                    e?.printStackTrace()
+                    print(e?.message)
+                }).go()
+         */
     }
 
     fun doWork(): String {
@@ -24,6 +36,7 @@ class KillerMainTest_KotlinVersion {
     val onFailed: (Exception?) -> Unit = {
         e: Exception? ->
         e?.printStackTrace()
+        print(e?.message)
     }
 
 }
