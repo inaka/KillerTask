@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch
 /**
  * Created by inaka on 1/21/16.
  */
-private class ExampleFunctionsRefactor {
+private class ExampleBlocksRefactor {
     val signal = CountDownLatch(1);
 
     // onSuccess function

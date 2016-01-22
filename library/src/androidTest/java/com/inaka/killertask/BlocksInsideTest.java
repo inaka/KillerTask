@@ -7,11 +7,11 @@ import android.test.UiThreadTest;
 /**
  * Created by inaka on 1/20/16.
  */
-public class KillerTaskBlocksTest extends AndroidTestCase {
+public class BlocksInsideTest extends AndroidTestCase {
 
     @UiThreadTest
     public void testLibraryWithBlocks() {
-        new ExampleAllTogether();
+        new ExampleBlocksInside();
     }
 
 }
