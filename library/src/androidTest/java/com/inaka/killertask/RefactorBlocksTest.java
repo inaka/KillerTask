@@ -7,7 +7,7 @@ import android.test.UiThreadTest;
 /**
  * Created by inaka on 1/21/16.
  */
-public class KillerTaskFunctionsTest extends AndroidTestCase {
+public class RefactorBlocksTest extends AndroidTestCase {
 
     @UiThreadTest
     public void testLibraryFunctionsRefactor() {

@@ -3,7 +3,7 @@ package com.inaka.killertask
 import android.os.AsyncTask
 import android.util.Log
 
-class KillerTask<T>(val task: () -> T, val onSuccess: (T) -> Any, val onFailed: (Exception?) -> Any) : AsyncTask<Void, Void, T>() {
+class KillerTask<T>(val task: () -> T, val onSuccess: (T) -> Any = {}, val onFailed: (Exception?) -> Any = {}) : AsyncTask<Void, Void, T>() {
 
     private var exception: Exception? = null
 
