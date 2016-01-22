@@ -11,11 +11,14 @@ private class ExampleAllTogether {
 
     init {
         KillerTask(
+                // task
                 { "test" },
+                // onSuccess
                 { result: String ->
                     Log.wtf("result", result)
                     signal.countDown()
                 },
+                // onFailed
                 { e: Exception? ->
                     Log.wtf("result", e.toString())
                     e?.printStackTrace()

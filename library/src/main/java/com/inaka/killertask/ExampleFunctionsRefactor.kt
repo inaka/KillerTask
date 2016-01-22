@@ -12,12 +12,14 @@ import java.util.concurrent.CountDownLatch
 private class ExampleFunctionsRefactor {
     val signal = CountDownLatch(1);
 
+    // onSuccess function
     val onSuccess: (String) -> Unit = {
         result: String ->
         Log.wtf("success result", result)
         signal.countDown()
     }
 
+    // onFailed function
     val onFailed: (Exception?) -> Unit = {
         e: Exception? ->
         Log.wtf("error result", e.toString())
@@ -25,13 +27,14 @@ private class ExampleFunctionsRefactor {
         signal.countDown()
     }
 
+    // task function
     val doWork: () -> String = {
         var connection: URLConnection? = null;
 
-        try{
+        try {
             var url = URL("https://inaka.net/blog")
             connection = url.openConnection();
-        }catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
 
