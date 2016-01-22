@@ -57,8 +57,8 @@ or simply:
       KillerTask(
                 "test", // task
                 {result: String -> Log.wtf("result", result)}, // onSuccess actions
-                {e: Exception? -> Log.wtf("result", e.toString()) // onFailed actions
-            }).go()
+                {e: Exception? -> Log.wtf("result", e.toString())} // onFailed actions
+            ).go()
 ```
 
 ### Contact Us
