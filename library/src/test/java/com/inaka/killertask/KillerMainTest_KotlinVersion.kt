@@ -8,31 +8,35 @@ import org.junit.Test
 class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
-        KillerTask(doWork(), onSuccess, onFailed).go()
+        KillerTask(doWork, onSuccess, onFailed).go()
 
-        /*
-            That is the same as:
-
-               KillerTask("test", {
-                    result: String ->
-                    assert(result.equals("test"))
-                }, {
-                    e: Exception? ->
-                    e?.printStackTrace()
-                    print(e?.message)
-                }).go()
+        /**
+         *  That is the same as:
+         *
+         *  KillerTask(
+         *      { "test" },
+         *      { result: String ->
+         *          assert(result.equals("test"))
+         *      },
+         *      { e: Exception? ->
+         *          e?.printStackTrace()
+         *          print(e?.message)
+         *      }).go()
          */
     }
 
-    fun doWork(): String {
-        return "test"
+    // task function
+    val doWork: () -> String = {
+        "test"
     }
 
+    // onSuccess function
     val onSuccess: (String) -> Unit = {
         result: String ->
         assert(result.equals("test"))
     }
 
+    // onFailed function
     val onFailed: (Exception?) -> Unit = {
         e: Exception? ->
         e?.printStackTrace()

@@ -3,7 +3,7 @@ package com.inaka.killertask
 import android.os.AsyncTask
 import android.util.Log
 
-class KillerTask<T>(val action: T, val onSuccess: (T) -> Any, val onFailed: (Exception?) -> Any) : AsyncTask<Void, Void, T>() {
+class KillerTask<T>(val task: () -> T, val onSuccess: (T) -> Any, val onFailed: (Exception?) -> Any) : AsyncTask<Void, Void, T>() {
 
     private var exception: Exception? = null
 
@@ -11,10 +11,13 @@ class KillerTask<T>(val action: T, val onSuccess: (T) -> Any, val onFailed: (Exc
         private val TAG = "KillerTask"
     }
 
+    /**
+     * Override AsyncTask's function doInBackground
+     */
     override fun doInBackground(vararg params: Void): T? {
         try {
             Log.wtf(TAG, "Enter to doInBackground")
-            return run { action }
+            return run { task() }
         } catch (e: Exception) {
             Log.wtf(TAG, "Error in background task")
             exception = e
@@ -22,26 +25,35 @@ class KillerTask<T>(val action: T, val onSuccess: (T) -> Any, val onFailed: (Exc
         }
     }
 
+    /**
+     * Override AsyncTask's function onPostExecute
+     */
     override fun onPostExecute(result: T) {
         Log.wtf(TAG, "Enter to onPostExecute")
-        if (!isCancelled) {
-            if (exception != null) {
+        if (!isCancelled) { // task not cancelled
+            if (exception != null) { // fail
                 Log.wtf(TAG, "Failure with Exception")
                 run { onFailed(exception) }
-            } else {
+            } else { // success
                 Log.wtf(TAG, "Success")
                 run { onSuccess(result) }
             }
-        } else {
+        } else { // task cancelled
             Log.wtf(TAG, "Failure with RuntimeException caused by task cancelled")
             run { onFailed(RuntimeException("Task was cancelled")) }
         }
     }
 
+    /**
+     * Execute AsyncTask
+     */
     fun go() {
         execute()
     }
 
+    /**
+     * Cancel AsyncTask
+     */
     fun cancel() {
         cancel(true)
     }
