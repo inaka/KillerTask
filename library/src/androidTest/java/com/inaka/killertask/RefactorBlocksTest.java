@@ -11,7 +11,7 @@ public class RefactorBlocksTest extends AndroidTestCase {
 
     @UiThreadTest
     public void testLibraryFunctionsRefactor() {
-        new ExampleFunctionsRefactor();
+        new ExampleBlocksRefactor();
     }
 
 }

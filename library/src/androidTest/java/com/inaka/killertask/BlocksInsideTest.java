@@ -11,7 +11,7 @@ public class BlocksInsideTest extends AndroidTestCase {
 
     @UiThreadTest
     public void testLibraryWithBlocks() {
-        new ExampleAllTogether();
+        new ExampleBlocksInside();
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.concurrent.CountDownLatch
 /**
  * Created by inaka on 1/20/16.
  */
-private class ExampleAllTogether {
+private class ExampleBlocksInside {
     val signal = CountDownLatch(1);
 
     init {
