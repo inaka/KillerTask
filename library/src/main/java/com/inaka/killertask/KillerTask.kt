@@ -30,17 +30,15 @@ class KillerTask<T>(val task: () -> T, val onSuccess: (T) -> Any, val onFailed: 
      */
     override fun onPostExecute(result: T) {
         Log.wtf(TAG, "Enter to onPostExecute")
-        if (!isCancelled) {
-            // task not cancelled
-            if (exception != null) {
+        if (!isCancelled) { // task not cancelled
+            if (exception != null) { // fail
                 Log.wtf(TAG, "Failure with Exception")
                 run { onFailed(exception) }
-            } else {
+            } else { // success
                 Log.wtf(TAG, "Success")
                 run { onSuccess(result) }
             }
-        } else {
-            // task cancelled
+        } else { // task cancelled
             Log.wtf(TAG, "Failure with RuntimeException caused by task cancelled")
             run { onFailed(RuntimeException("Task was cancelled")) }
         }
