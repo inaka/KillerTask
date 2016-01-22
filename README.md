@@ -24,12 +24,12 @@ repositories {
 
 dependencies {
 	// ...
-  compile 'com.github.inaka:killertask:v1.1'
+  compile 'com.github.inaka:killertask:v1.2'
   // ...
 }
 ```
 
-### Code Examples
+### Code examples
 
 
 ```kotlin
@@ -43,23 +43,48 @@ dependencies {
       	Log.wtf("result", e.toString())
     }
 
-    init {
-        KillerTask(doWork, onSuccess, onFailed).go()
-    }
-
-     val doWork: () -> String = {
+    val doWork: () -> String = {
         "test" // implicit return
     }
+
+    KillerTask(doWork, onSuccess, onFailed).go()
 ```
 or simply:
 
 ```kotlin
-        KillerTask(
-                { "test" }, // task
-                {result: String -> Log.wtf("result", result)}, // onSuccess actions
-                {e: Exception? -> Log.wtf("result", e.toString())} // onFailed actions
-            ).go()
+    KillerTask(
+            { "test" }, // task
+            {result: String -> Log.wtf("result", result)}, // onSuccess actions
+            {e: Exception? -> Log.wtf("result", e.toString())} // onFailed actions
+        ).go()
 ```
+
+Actually, the only strongly necessary parameter is the first one (the main task):
+
+```kotlin     
+    KillerTask({ Log.wtf("LOG", "KillerTask is awesome") }).go() // only main task
+```
+```kotlin  
+    KillerTask(
+            { Log.wtf("LOG", "KillerTask is awesome") }, // main task
+            { Log.wtf("LOG", "Super awesome!")} // onSuccess
+    ).go()
+```
+```kotlin 
+    KillerTask(
+            { // main task
+                Log.wtf("LOG", "KillerTask is awesome")
+                "super" // implicit return
+            },
+            {}, // onSuccess is empty
+            { e: Exception? -> Log.wtf("LOG", e.toString()) } // onFailed
+    ).go()
+```
+
+
+### Example of an app using KillerTask
+* [Kotlillon](https://github.com/inaka/kotlillon)
+
 
 ### Contact Us
 For **questions** or **general comments** regarding the use of this library, please use our public
