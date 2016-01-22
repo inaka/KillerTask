@@ -59,7 +59,7 @@ or simply:
         ).go()
 ```
 
-Actually, the only strongly necessary parameter is the first (the main task):
+Actually, the only strongly necessary parameter is the first one (the main task):
 
 ```kotlin     
     KillerTask({ Log.wtf("LOG", "KillerTask is awesome") }).go() // only main task
@@ -82,7 +82,7 @@ Actually, the only strongly necessary parameter is the first (the main task):
 ```
 
 
-### App example that use KillerTask
+### Example of an app using KillerTask
 * [Kotlillon](https://github.com/inaka/kotlillon)
 
 
