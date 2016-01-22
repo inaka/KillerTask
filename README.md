@@ -9,10 +9,10 @@ Do we have better alternatives? Sure, but sometimes all we want is a quick and s
 
 ### What is it, really?
 Just a wrapper around an `AsyncTask`, with a funny looking API.
-The main difference between KillerTask and TinyTask is that this library is written in Kotlin language, very different than Java.
+The main difference between KillerTask and TinyTask is that this library is written in Kotlin language, very different from Java.
 To learn how to use Kotlin in your Android app you can visit: [Android development with Kotlin](http://inaka.net/blog/2016/01/15/android-development-with-kotlin)
 
-### How to download and Install
+### How to download and install it
 Add the following to your `build.gradle` file:
 
 ```groovy
