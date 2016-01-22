@@ -42,7 +42,7 @@ private class ExampleFunctionsRefactor {
         httpConn.connectTimeout = 3000;
         httpConn.readTimeout = 5000;
 
-        // return
+        // implicit return
         httpConn.responseCode.toString() + " " + httpConn.responseMessage
     }
 
