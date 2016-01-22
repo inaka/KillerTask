@@ -82,6 +82,10 @@ Actually, the only strongly necessary parameter is the first (the main task):
 ```
 
 
+### App example that use KillerTask
+*[Kotlillon](https://github.com/inaka/kotlillon)
+
+
 ### Contact Us
 For **questions** or **general comments** regarding the use of this library, please use our public
 [hipchat room](http://inaka.net/hipchat).
