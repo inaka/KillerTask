@@ -8,12 +8,12 @@ import org.junit.Test
 class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
-        KillerTask(doWork(), onSuccess, onFailed).go()
+        KillerTask(doWork, onSuccess, onFailed).go()
 
         /*
             That is the same as:
 
-               KillerTask("test", {
+               KillerTask({ "test" }, {
                     result: String ->
                     assert(result.equals("test"))
                 }, {
@@ -24,8 +24,8 @@ class KillerMainTest_KotlinVersion {
          */
     }
 
-    fun doWork(): String {
-        return "test"
+    val doWork: () -> String = {
+        "test"
     }
 
     val onSuccess: (String) -> Unit = {

@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.inaka.killertask">
 
+    <!--Uncomment this if you want to run the example of internet connection-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+
 </manifest>

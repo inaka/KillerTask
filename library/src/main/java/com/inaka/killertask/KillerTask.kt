@@ -3,7 +3,7 @@ package com.inaka.killertask
 import android.os.AsyncTask
 import android.util.Log
 
-class KillerTask<T>(val action: T, val onSuccess: (T) -> Any, val onFailed: (Exception?) -> Any) : AsyncTask<Void, Void, T>() {
+class KillerTask<T>(val action: () -> T, val onSuccess: (T) -> Any, val onFailed: (Exception?) -> Any) : AsyncTask<Void, Void, T>() {
 
     private var exception: Exception? = null
 
@@ -14,7 +14,7 @@ class KillerTask<T>(val action: T, val onSuccess: (T) -> Any, val onFailed: (Exc
     override fun doInBackground(vararg params: Void): T? {
         try {
             Log.wtf(TAG, "Enter to doInBackground")
-            return run { action }
+            return run { action() }
         } catch (e: Exception) {
             Log.wtf(TAG, "Error in background task")
             exception = e
