@@ -6,11 +6,11 @@ import android.test.UiThreadTest;
 /**
  * Created by inaka on 1/22/16.
  */
-public class TaskOnlyExample extends AndroidTestCase {
+public class VariableParametersTest extends AndroidTestCase {
 
     @UiThreadTest
     public void testLibraryWithBlocks() {
-        new ExampleOnlyTask();
+        new ExampleVariableParametersTasks();
     }
 
 }
