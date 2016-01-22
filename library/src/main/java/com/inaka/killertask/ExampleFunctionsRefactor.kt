@@ -32,7 +32,7 @@ private class ExampleFunctionsRefactor {
         var connection: URLConnection? = null;
 
         try {
-            var url = URL("https://inaka.net/blog")
+            var url = URL("https://api.github.com/gists")
             connection = url.openConnection();
         } catch (e: Exception) {
             e.printStackTrace()
@@ -43,7 +43,7 @@ private class ExampleFunctionsRefactor {
         httpConn.readTimeout = 5000;
 
         // return
-        httpConn.responseCode.toString()
+        httpConn.responseCode.toString() + " " + httpConn.responseMessage
     }
 
     init {
