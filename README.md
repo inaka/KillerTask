@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
 	// ...
-  compile 'com.github.inaka:killertask:v1.0'
+  compile 'com.github.inaka:killertask:v1.1'
   // ...
 }
 ```
@@ -44,18 +44,18 @@ dependencies {
     }
 
     init {
-        KillerTask(doWork(), onSuccess, onFailed).go()
+        KillerTask(doWork, onSuccess, onFailed).go()
     }
 
-    fun doWork(): String {
-        return "test"
+     val doWork: () -> String = {
+        "test" // implicit return
     }
 ```
 or simply:
 
 ```kotlin
-      KillerTask(
-                "test", // task
+        KillerTask(
+                { "test" }, // task
                 {result: String -> Log.wtf("result", result)}, // onSuccess actions
                 {e: Exception? -> Log.wtf("result", e.toString())} // onFailed actions
             ).go()
