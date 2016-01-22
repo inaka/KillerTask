@@ -29,7 +29,7 @@ dependencies {
 }
 ```
 
-### Code Examples
+### Code examples
 
 
 ```kotlin
@@ -83,7 +83,7 @@ Actually, the only strongly necessary parameter is the first (the main task):
 
 
 ### App example that use KillerTask
-*[Kotlillon](https://github.com/inaka/kotlillon)
+* [Kotlillon](https://github.com/inaka/kotlillon)
 
 
 ### Contact Us
