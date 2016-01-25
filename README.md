@@ -49,17 +49,11 @@ Create a new KillerTask
 
     var killerTask = KillerTask(doWork, onSuccess, onFailed)
 ```
-
-Execute it:
-
 ```kotlin
-    killerTask.go()
+    killerTask.go() // to execute it 
 ```
-
-Cancel it:
-
 ```kotlin
-    killerTask.cancel()
+    killerTask.cancel() // to cancel it
 ```
 
 Or simply you can do:
