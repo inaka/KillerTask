@@ -31,7 +31,6 @@ dependencies {
 
 ### Code examples
 
-
 ```kotlin
     val onSuccess: (String) -> Unit = {
         result: String ->
@@ -47,9 +46,16 @@ dependencies {
         "test" // implicit return
     }
 
-    KillerTask(doWork, onSuccess, onFailed).go()
+    var killerTask = KillerTask(doWork, onSuccess, onFailed)
 ```
-or simply:
+```kotlin
+    killerTask.go() // to execute it 
+```
+```kotlin
+    killerTask.cancel() // to cancel it
+```
+
+Or simply you can do:
 
 ```kotlin
     KillerTask(
