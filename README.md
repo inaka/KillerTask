@@ -31,7 +31,6 @@ dependencies {
 
 ### Code examples
 
-Create a new KillerTask
 ```kotlin
     val onSuccess: (String) -> Unit = {
         result: String ->
