@@ -6,9 +6,6 @@ import java.net.URL
 import java.net.URLConnection
 import java.util.concurrent.CountDownLatch
 
-/**
- * Created by inaka on 1/21/16.
- */
 private class ExampleBlocksRefactor {
     val signal = CountDownLatch(1);
 

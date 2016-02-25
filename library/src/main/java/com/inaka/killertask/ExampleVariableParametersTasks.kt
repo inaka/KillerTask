@@ -4,9 +4,6 @@ import android.util.Log
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-/**
- * Created by inaka on 1/22/16.
- */
 private class ExampleVariableParametersTasks {
 
     val signal = CountDownLatch(1);

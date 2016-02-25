@@ -2,9 +2,6 @@ package com.inaka.killertask
 
 import org.junit.Test
 
-/**
- * Created by inaka on 1/19/16.
- */
 class KillerMainTest_KotlinVersion {
     @Test
     fun createKillerTask() {
