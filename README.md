@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
 	// ...
-  compile 'com.github.inaka:killertask:v1.2'
+  compile 'com.github.inaka:killertask:v1.4'
   // ...
 }
 ```
